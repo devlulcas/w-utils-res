@@ -7,16 +7,31 @@ let make = (
   ~toggleTodoComplitness: (~index: int) => unit,
   ~deleteTodo: (~index: int) => unit,
 ) => {
-  <li className="flex items-center justify-between px-2 py-1 bg-gray-600 rounded">
-    <div className="flex items-center gap-2">
+  let id = React.useId()
+
+  let labelStatusStyle = item.completed ? "line-through bg-gray-800" : "bg-gray-700"
+  let buttonStatusStyle = item.completed
+    ? "bg-blue-700/50 hover:bg-blue-500"
+    : "bg-blue-700 hover:bg-blue-500"
+
+  <li className="flex items-center bg-gray-300 h-fit">
+    <label
+      htmlFor={id}
+      className={"cursor-pointer h-full w-full px-2 py-1 border-2 border-blue-950/25 focus-within:border-blue-600/50 " ++
+      labelStatusStyle}>
       <input
-        type_="checkbox" checked={item.completed} onChange={_ => toggleTodoComplitness(~index)}
+        id={id}
+        type_="checkbox"
+        checked={item.completed}
+        onChange={_ => toggleTodoComplitness(~index)}
+        className="sr-only"
       />
-      <span className={item.completed ? "line-through" : "underline"}>
-        {item.text->React.string}
-      </span>
-    </div>
-    <button className="px-2 py-1 rounded hover:bg-gray-700" onClick={_ => deleteTodo(~index)}>
+      <span> {item.text->React.string} </span>
+    </label>
+    <button
+      className={"outline-none border-2 border-blue-950/25 focus:border-blue-600/50 px-2 h-full " ++
+      buttonStatusStyle}
+      onClick={_ => deleteTodo(~index)}>
       {"Delete"->React.string}
     </button>
   </li>

@@ -7,7 +7,7 @@ let make = (
   let appendedClassName = className->Belt.Option.getWithDefault("")
 
   <button
-    className={"px-4 py-2 rounded hover:bg-opacity-50 " ++ appendedClassName}
+    className={"px-4 py-2 hover:bg-opacity-50 " ++ appendedClassName}
     onClick={_ =>
       switch onClick {
       | Some(onClick) => onClick()

@@ -93,17 +93,20 @@ let make = () => {
 
   let toggleTodoComplitness = (~index: int) => dispatch(Toggle(index))
 
-  <main className="w-full h-screen grid bg-gray-950 text-gray-50 place-items-center">
+  <main
+    className="overflow-y-hidden w-full h-screen grid bg-gray-950 text-gray-50 place-items-center ">
     <div
-      className="flex flex-col items-center justify-center overflow-hidden h-fit w-fit bg-gray-900 rounded">
-      <header className="text-2xl font-bold bg-gray-800 px-4 py-2">
+      className="flex flex-col items-center justify-center min-w-[30rem] max-w-xl bg-gray-900 rounded">
+      <header className="text-2xl font-bold bg-gray-800 px-4 py-2 w-full">
         <div className="flex item-center gap-2">
           {React.array(
             filters->Array.map(filter => {
               let activeColor = filter == selectedFilter ? "bg-blue-600" : "bg-gray-700"
 
               <Button
-                key={filter} onClick={_ => setSelectedFilter(_ => filter)} className={activeColor}>
+                key={filter}
+                onClick={_ => setSelectedFilter(_ => filter)}
+                className={"text-md w-full " ++ activeColor}>
                 {filter->React.string}
               </Button>
             }),
@@ -114,7 +117,7 @@ let make = () => {
         className="flex gap-2 items-center justify-between w-full px-4 py-2"
         onSubmit={onSubmitHandler}>
         <input
-          className="w-full px-4 py-2 rounded text-gray-800"
+          className="w-full px-4 py-2 text-gray-800"
           type_="text"
           name="todoText"
           placeholder="What needs to be done?"
@@ -125,7 +128,7 @@ let make = () => {
         {switch visibleTodos {
         | [] => <p className="text-center"> {"No todos yet"->React.string} </p>
         | _ =>
-          <ul className="w-full flex flex-col gap-2">
+          <ul className="w-full flex flex-col gap-2 h-72 overflow-y-auto">
             {React.array(
               visibleTodos->Array.mapWithIndex((item, index) => {
                 <Item key={item.text} index item toggleTodoComplitness deleteTodo />
