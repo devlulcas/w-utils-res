@@ -1,0 +1,22 @@
+{
+  "name": "w-utils-res",
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ],
+  "package-specs": [
+    {
+      "module": "es6",
+      "in-source": true
+    }
+  ],
+  "suffix": ".bs.js",
+  "jsx": {
+    "version": 4,
+    "mode": "automatic"
+  },
+  "bs-dependencies": ["@rescript/react", "@rescript/core", "rescript-webapi"],
+  "bsc-flags": ["-open RescriptCore"]
+}

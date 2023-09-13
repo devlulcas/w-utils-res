@@ -1,0 +1,1 @@
+{ "dirs" : [ "src" ] , "pkgs" : [ [ "rescript-webapi" , "/home/arch/Coding/w-utils-res/node_modules/rescript-webapi" ] , [ "@rescript/react" , "/home/arch/Coding/w-utils-res/node_modules/@rescript/react" ] , [ "@rescript/core" , "/home/arch/Coding/w-utils-res/node_modules/@rescript/core" ] ] , "generated" : [] }

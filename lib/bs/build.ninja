@@ -1,0 +1,38 @@
+rescript = 1
+g_finger := /home/arch/Coding/w-utils-res/node_modules/@rescript/react/lib/ocaml/install.stamp
+g_finger := /home/arch/Coding/w-utils-res/node_modules/@rescript/core/lib/ocaml/install.stamp
+g_finger := /home/arch/Coding/w-utils-res/node_modules/rescript-webapi/lib/ocaml/install.stamp
+rule astj
+  command = /home/arch/Coding/w-utils-res/node_modules/.pnpm/rescript@10.1.4/node_modules/rescript/linux/bsc.exe  -bs-v 10.1.4 -bs-jsx 4 -bs-jsx-mode automatic -open RescriptCore -absname -bs-ast -o $out $i
+o src/app.ast : astj ../../src/app.res
+rule deps
+  command = /home/arch/Coding/w-utils-res/node_modules/.pnpm/rescript@10.1.4/node_modules/rescript/linux/bsb_helper.exe -hash f66981e8c786c931feb4d2a80fa48f7a $in
+  restat = 1
+o src/app.d : deps src/app.ast src/app.iast
+o src/app.iast : astj ../../src/app.resi
+rule mi
+  command = /home/arch/Coding/w-utils-res/node_modules/.pnpm/rescript@10.1.4/node_modules/rescript/linux/bsc.exe -I src -I /home/arch/Coding/w-utils-res/node_modules/@rescript/react/lib/ocaml -I /home/arch/Coding/w-utils-res/node_modules/@rescript/core/lib/ocaml -I /home/arch/Coding/w-utils-res/node_modules/rescript-webapi/lib/ocaml -open RescriptCore  -bs-v $g_finger $i
+  dyndep = 1
+  restat = 1
+o src/app.cmi : mi src/app.iast
+rule mj
+  command = /home/arch/Coding/w-utils-res/node_modules/.pnpm/rescript@10.1.4/node_modules/rescript/linux/bsc.exe -bs-read-cmi -I src -I /home/arch/Coding/w-utils-res/node_modules/@rescript/react/lib/ocaml -I /home/arch/Coding/w-utils-res/node_modules/@rescript/core/lib/ocaml -I /home/arch/Coding/w-utils-res/node_modules/rescript-webapi/lib/ocaml -open RescriptCore  -bs-package-name w-utils-res -bs-package-output es6:$in_d:.bs.js -bs-v $g_finger $i
+  dyndep = 1
+  restat = 1
+o src/app.cmj ../../src/app.bs.js : mj src/app.ast src/app.cmi
+o src/item.ast : astj ../../src/item.res
+o src/item.d : deps src/item.ast
+rule mij
+  command = /home/arch/Coding/w-utils-res/node_modules/.pnpm/rescript@10.1.4/node_modules/rescript/linux/bsc.exe -I src -I /home/arch/Coding/w-utils-res/node_modules/@rescript/react/lib/ocaml -I /home/arch/Coding/w-utils-res/node_modules/@rescript/core/lib/ocaml -I /home/arch/Coding/w-utils-res/node_modules/rescript-webapi/lib/ocaml -open RescriptCore  -bs-package-name w-utils-res -bs-package-output es6:$in_d:.bs.js -bs-v $g_finger $i
+  dyndep = 1
+  restat = 1
+o src/item.cmj src/item.cmi ../../src/item.bs.js : mij src/item.ast
+o src/main.ast : astj ../../src/main.res
+o src/main.d : deps src/main.ast
+o src/main.cmj src/main.cmi ../../src/main.bs.js : mij src/main.ast
+o src/todo.ast : astj ../../src/todo.res
+o src/todo.d : deps src/todo.ast
+o src/todo.cmj src/todo.cmi ../../src/todo.bs.js : mij src/todo.ast
+o src/button.ast : astj ../../src/button.res
+o src/button.d : deps src/button.ast
+o src/button.cmj src/button.cmi ../../src/button.bs.js : mij src/button.ast

@@ -1,0 +1,28 @@
+rescript = 1
+rule cp
+  command = cp $i $out
+rule touch
+ command = touch $out
+o app.cmi : cp ../bs/src/app.cmi
+o app.cmj : cp ../bs/src/app.cmj
+o app.cmt : cp ../bs/src/app.cmt
+o app.res : cp ../../src/app.res
+o app.resi : cp ../../src/app.resi
+o app.cmti : cp ../bs/src/app.cmti
+o item.cmi : cp ../bs/src/item.cmi
+o item.cmj : cp ../bs/src/item.cmj
+o item.cmt : cp ../bs/src/item.cmt
+o item.res : cp ../../src/item.res
+o main.cmi : cp ../bs/src/main.cmi
+o main.cmj : cp ../bs/src/main.cmj
+o main.cmt : cp ../bs/src/main.cmt
+o main.res : cp ../../src/main.res
+o todo.cmi : cp ../bs/src/todo.cmi
+o todo.cmj : cp ../bs/src/todo.cmj
+o todo.cmt : cp ../bs/src/todo.cmt
+o todo.res : cp ../../src/todo.res
+o button.cmi : cp ../bs/src/button.cmi
+o button.cmj : cp ../bs/src/button.cmj
+o button.cmt : cp ../bs/src/button.cmt
+o button.res : cp ../../src/button.res
+build install.stamp : touch app.cmi app.cmj item.cmi item.cmj main.cmi main.cmj todo.cmi todo.cmj button.cmi button.cmj 
