@@ -26,7 +26,7 @@ let make = (
         onChange={_ => toggleTodoComplitness(~index)}
         className="sr-only"
       />
-      <span> {item.text->React.string} </span>
+      <span className="break-words whitespace-break-spaces"> {item.text->React.string} </span>
     </label>
     <button
       className={"outline-none border-2 border-blue-950/25 focus:border-blue-600/50 px-2 h-full " ++

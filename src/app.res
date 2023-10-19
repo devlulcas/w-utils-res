@@ -94,9 +94,9 @@ let make = () => {
   let toggleTodoComplitness = (~index: int) => dispatch(Toggle(index))
 
   <main
-    className="overflow-y-hidden w-full h-screen grid bg-gray-950 text-gray-50 place-items-center ">
+    className="overflow-y-hidden w-full h-screen grid bg-gray-950 text-gray-50 place-items-center p-1">
     <div
-      className="flex flex-col items-center justify-center min-w-[30rem] max-w-xl bg-gray-900 rounded">
+      className="flex flex-col items-center justify-center w-full max-w-xl bg-gray-900 rounded">
       <header className="text-2xl font-bold bg-gray-800 px-4 py-2 w-full">
         <div className="flex item-center gap-2">
           {React.array(
@@ -106,7 +106,7 @@ let make = () => {
               <Button
                 key={filter}
                 onClick={_ => setSelectedFilter(_ => filter)}
-                className={"text-md w-full " ++ activeColor}>
+                className={"text-base w-full " ++ activeColor}>
                 {filter->React.string}
               </Button>
             }),
@@ -114,7 +114,7 @@ let make = () => {
         </div>
       </header>
       <form
-        className="flex gap-2 items-center justify-between w-full px-4 py-2"
+        className="flex flex-col lg:flex-row gap-2 items-center justify-between w-full px-4 py-2"
         onSubmit={onSubmitHandler}>
         <input
           className="w-full px-4 py-2 text-gray-800"
@@ -122,7 +122,7 @@ let make = () => {
           name="todoText"
           placeholder="What needs to be done?"
         />
-        <Button className="bg-gray-500"> {"Add"->React.string} </Button>
+        <Button className="bg-gray-500 w-full lg:w-fit"> {"Add"->React.string} </Button>
       </form>
       <div className="flex flex-col w-full p-4 gap-2">
         {switch visibleTodos {
